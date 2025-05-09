@@ -130,20 +130,21 @@
         <button class="tab-button" onclick="showTab(this, 'tab-gang')">العصابة</button>
         <button class="tab-button" onclick="showTab(this, 'tab-submit')">تقديم</button>
         <button class="tab-button" onclick="showTab(this, 'tab-ems')">الصحة</button>
-        <button class="tab-button" onclick="showTab(this, 'tab-justice')">العدل</button>
+        <button class="tab-button" onclick="showTab(this, 'tab-admin')">إداري ديسكورد</button>
+        <button class="tab-button" onclick="showTab(this, 'tab-map')">رقابة ماب</button>
       </div>
 
       <div id="tab-police" class="tab-content active">
-        <form onsubmit="sendForm(event, 'الشرطة')">
+        <form onsubmit="sendForm(event, 'شرطة')">
           <input type="text" placeholder="اسمك في الديسكورد" required>
-          <input type="text" placeholder="اسمك في اللعبة و اسم القطاع " required>
+          <input type="text" placeholder="اسمك في اللعبة" required>
           <textarea placeholder="لماذا تريد الانضمام مع خبراتك العسكريه؟" required></textarea>
           <button type="submit">إرسال</button>
         </form>
       </div>
 
       <div id="tab-gang" class="tab-content">
-        <form onsubmit="sendForm(event, 'العصابة')">
+        <form onsubmit="sendForm(event, 'عصابة')">
           <input type="text" placeholder="اسمك في الديسكورد" required>
           <input type="text" placeholder="اسم العصابة" required>
           <textarea placeholder="نبذة عن العصابة وخططها" required></textarea>
@@ -169,11 +170,20 @@
         </form>
       </div>
 
-      <div id="tab-justice" class="tab-content">
-        <form onsubmit="sendForm(event, 'العدل')">
+      <div id="tab-admin" class="tab-content">
+        <form onsubmit="sendForm(event, 'إداري ديسكورد')">
           <input type="text" placeholder="اسمك في الديسكورد" required>
-          <input type="text" placeholder="عمرك" required>
-          <textarea placeholder="خبراتك بالقضاء أو العدل" required></textarea>
+          <input type="text" placeholder="خبراتك في الديسكورد" required>
+          <textarea placeholder="لماذا تريد أن تكون إداري في سيرفرنا؟" required></textarea>
+          <button type="submit">إرسال</button>
+        </form>
+      </div>
+
+      <div id="tab-map" class="tab-content">
+        <form onsubmit="sendForm(event, 'رقابة ماب')">
+          <input type="text" placeholder="اسمك في الديسكورد" required>
+          <input type="text" placeholder="خبراتك بالماباو بروبلوكس" required>
+          <textarea placeholder="لماذا ترغب بأن تكون مراقب ماب؟" required></textarea>
           <button type="submit">إرسال</button>
         </form>
       </div>
@@ -191,9 +201,8 @@
         <form onsubmit="sendForm(event, 'إنشاء شخصية')">
           <input type="text" placeholder="اسمك في الديسكورد" required>
           <input type="text" placeholder="اسم الشخصية" required>
-          <input type="text" placeholder="جنسية الشخصية" required>
+          <input type="text" placeholder="جنسية الشخصية" required>      
           <textarea placeholder="نبذة عن الشخصية وخلفيتها" required></textarea>
-          <input type="url" placeholder="رابط صورة حسابك روب (إجباري للقبول)">
           <button type="submit">إرسال</button>
         </form>
       </div>
@@ -231,12 +240,10 @@
       const fields = [];
 
       inputs.forEach(input => {
-        if (input.value.trim() !== "") {
-          fields.push({
-            name: input.placeholder,
-            value: input.value
-          });
-        }
+        fields.push({
+          name: input.placeholder,
+          value: input.value
+        });
       });
 
       const embedFields = fields.map(f => ({
