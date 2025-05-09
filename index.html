@@ -119,12 +119,12 @@
         <li>الالتزام بقوانين السير والمرور.</li>
         <li>العمل والكسب ضمن حدود الوظائف والقوانين.</li>
       </ul>
-      <p style="margin-top:20px; font-weight:bold; color:#e1bfff">|| @everyone ||</p>
+      <p style="margin-top:20px; font-weight:bold; color:#e1bfff">|| لجميع الاعضاء ||</p>
     </section>
 
     <section class="section" id="apps">
       <h2>التقديمات</h2>
-      <div class="notice">تنبيه: بعد إرسال الطلب، الرجاء التوجه للتكت في الديسكورد لمتابعة حالته.</div>
+      <div class="notice">تنبيه: بعد إرسال الطلب، الرجاء التوجه للتكت في الديسكورد لمتابعة التقديم.</div>
       <div class="tabs">
         <button class="tab-button active" onclick="showTab(this, 'tab-police')">الشرطة</button>
         <button class="tab-button" onclick="showTab(this, 'tab-gang')">العصابة</button>
@@ -135,7 +135,7 @@
       </div>
 
       <div id="tab-police" class="tab-content active">
-        <form onsubmit="sendForm(event, 'شرطة')">
+        <form onsubmit="sendForm(event, 'الشرطة')">
           <input type="text" placeholder="اسمك في الديسكورد" required>
           <input type="text" placeholder="اسمك في اللعبة" required>
           <textarea placeholder="لماذا تريد الانضمام مع خبراتك العسكريه؟" required></textarea>
@@ -144,7 +144,7 @@
       </div>
 
       <div id="tab-gang" class="tab-content">
-        <form onsubmit="sendForm(event, 'عصابة')">
+        <form onsubmit="sendForm(event, 'العصابات')">
           <input type="text" placeholder="اسمك في الديسكورد" required>
           <input type="text" placeholder="اسم العصابة" required>
           <textarea placeholder="نبذة عن العصابة وخططها" required></textarea>
@@ -153,7 +153,7 @@
       </div>
 
       <div id="tab-submit" class="tab-content">
-        <form onsubmit="sendForm(event, 'تقديم إلى عصابة')">
+        <form onsubmit="sendForm(event, 'العدل')">
           <input type="text" placeholder="اسمك في الديسكورد" required>
           <input type="text" placeholder="ما العصابة الذي تقدم لها" required>
           <textarea placeholder="لماذا تريد الانضمام وما هي خبراتك؟" required></textarea>
@@ -162,7 +162,7 @@
       </div>
 
       <div id="tab-ems" class="tab-content">
-        <form onsubmit="sendForm(event, 'الصحة')">
+        <form onsubmit="sendForm(event, 'الصحه')">
           <input type="text" placeholder="اسمك في الديسكورد" required>
           <input type="text" placeholder="اسمك في اللعبة" required>
           <textarea placeholder="لماذا تريد تنضم مع الخبرات لقطاع الصحة؟" required></textarea>
@@ -171,7 +171,7 @@
       </div>
 
       <div id="tab-admin" class="tab-content">
-        <form onsubmit="sendForm(event, 'إداري ديسكورد')">
+        <form onsubmit="sendForm(event, 'الإداري')">
           <input type="text" placeholder="اسمك في الديسكورد" required>
           <input type="text" placeholder="خبراتك في الديسكورد" required>
           <textarea placeholder="لماذا تريد أن تكون إداري في سيرفرنا؟" required></textarea>
@@ -180,9 +180,9 @@
       </div>
 
       <div id="tab-map" class="tab-content">
-        <form onsubmit="sendForm(event, 'رقابة ماب')">
+        <form onsubmit="sendForm(event, 'الرقابي')">
           <input type="text" placeholder="اسمك في الديسكورد" required>
-          <input type="text" placeholder="خبراتك بالماب او بروبلوكس" required>
+          <input type="text" placeholder="خبراتك بالماباو بروبلوكس" required>
           <textarea placeholder="لماذا ترغب بأن تكون مراقب ماب؟" required></textarea>
           <button type="submit">إرسال</button>
         </form>
@@ -198,7 +198,7 @@
       </div>
 
       <div id="tab-char" class="tab-content active">
-        <form onsubmit="sendForm(event, 'إنشاء شخصية')">
+        <form onsubmit="sendForm(event, 'الشخصيه')">
           <input type="text" placeholder="اسمك في الديسكورد" required>
           <input type="text" placeholder="اسم الشخصية" required>
           <input type="text" placeholder="جنسية الشخصية" required>      
@@ -208,7 +208,7 @@
       </div>
 
       <div id="tab-id" class="tab-content">
-        <form onsubmit="sendForm(event, 'إنشاء هوية')">
+        <form onsubmit="sendForm(event, 'الهويه')">
           <input type="text" placeholder="اسمك في الديسكورد" required>
           <input type="text" placeholder="اسمك الكامل" required>
           <input type="number" placeholder="العمر" required>
@@ -220,6 +220,17 @@
   </main>
 
   <script>
+    const webhooks = {
+      "الشرطة": "https://discord.com/api/webhooks/1369987759569240094/hR1SjVdwy4wFrTuahV9LGMNvRXm5c58eteMUHrKScutICt0wexSFdd2ZtciD3osAr2oc",
+      "الصحه": "https://discord.com/api/webhooks/1369988245458518067/kOUmzKc1GAEN5UrkZ-6wgo98S-mlAK7jt8U5XaCyDZsHnwiF-1dLWi12FdyUYnb1XmY-",
+      "العدل": "https://discord.com/api/webhooks/1369988518075699272/k6shIYqvK3KHTBwsdSdr3jVm08g0QIrwsif5wTqtFB25xF2xH4CWqQyTVLdOKjTYJFjm",
+      "العصابات": "https://discord.com/api/webhooks/1369988778080469034/WGhhl_D683EUpHfO9tNBV8iieKeJqZDsdBF9a7Jcqeq1mMcbWgjldctlqMig7C9hix2U",
+      "الهويه": "https://discord.com/api/webhooks/1370027618723827803/vnr9QyxYCj7sg1TKhgDSRvbs1usx-Nfa-zTNFkAl7ngT7KHmebQcGMrTJ5-I-VWutytu",
+      "الشخصيه": "https://discord.com/api/webhooks/1370027873733316673/6hjKAHNgF0P8QRCLhkRAdqww6ragBsKT6kn_8s8_YQ6XYMhOV6nkkBEkCC3tMaKjPMVB",
+      "الإداري": "https://discord.com/api/webhooks/1370072986958299217/IUeRnvk7yli9xtN7GJ_Q_DG8e0v7Mu-iaicbR9gdVLQvsCUzHVaL776jKW3ED1PUBfe3",
+      "الرقابي": "https://discord.com/api/webhooks/1370073191871021066/CAQq4i6usWwRvijRtkh3MBdi4yEK4ZXn-7cE26owA2ISNFtihIUEnQKxqDb_vWIccucr"
+    };
+
     function showSection(id) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(id).classList.add('active');
@@ -236,14 +247,12 @@
     function sendForm(e, القسم) {
       e.preventDefault();
       const form = e.target;
+      const webhookURL = webhooks[القسم];
       const inputs = form.querySelectorAll('input, textarea');
       const fields = [];
 
       inputs.forEach(input => {
-        fields.push({
-          name: input.placeholder,
-          value: input.value
-        });
+        fields.push({ name: input.placeholder, value: input.value });
       });
 
       const embedFields = fields.map(f => ({
@@ -264,14 +273,14 @@
         }]
       };
 
-      fetch("https://discord.com/api/webhooks/1369036105126510623/XFA3J12H4ovB4aIgeW5QKZ3nPTrnfwMckQPbirb1DgEc473UZaygN6nAapHwuLRxcDWG", {
+      fetch(webhookURL, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload)
       }).then(() => {
-        alert("تم إرسال الطلب بنجاح. الرجاء التوجه للتكت في الديسكورد.");
+        alert(" تنبيه من الادارة :- تم إرسال الطلب بنجاح. الرجاء التوجه للتكت في الديسكورد.");
         form.reset();
       }).catch(() => {
         alert("حدث خطأ، حاول مرة أخرى.");
