@@ -3,97 +3,163 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>فالكون - Falcon RP</title>
+  <title>Falcon RP</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #1e1b2e;
-      color: #eee;
+      font-family: 'Tajawal', sans-serif;
+      background-color: #1b1b2f;
+      color: #fff;
+      overflow-x: hidden;
     }
+
+    /* نافذة البداية */
+    #splash-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: #2e1a47;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeOut 1s ease-out forwards;
+      animation-delay: 5s;
+    }
+
+    #splash-screen h1 {
+      font-size: 24px;
+      color: #fff;
+      animation: pulse 2s infinite;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
     header {
-      background-color: #5b2c6f;
+      background: linear-gradient(to right, #8e44ad, #5b2c6f);
       padding: 20px;
       text-align: center;
+      animation: slideDown 1s ease;
     }
+
+    @keyframes slideDown {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
+    }
+
     nav a {
+      color: #fff;
       margin: 0 10px;
-      color: #dcd6f7;
       text-decoration: none;
       font-weight: bold;
-      cursor: pointer;
+      transition: color 0.3s;
     }
+
+    nav a:hover {
+      color: #e1bfff;
+    }
+
     main {
       padding: 20px;
+      animation: fadeIn 1.5s ease;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .section {
       display: none;
-      margin-bottom: 30px;
+      background-color: #292a3a;
       padding: 20px;
-      background-color: #2e294e;
       border-radius: 12px;
+      margin-bottom: 30px;
     }
+
     .section.active {
       display: block;
     }
-    input, textarea, select, button {
-      display: block;
-      width: 100%;
-      margin-top: 10px;
-      padding: 10px;
-      border-radius: 8px;
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .tab-button {
+      background-color: #3e3f5e;
       border: none;
+      padding: 10px;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .tab-button.active,
+    .tab-button:hover {
+      background-color: #9b59b6;
+    }
+
+    .tab-content {
+      display: none;
+      margin-top: 20px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
       font-size: 1em;
     }
+
     button {
       background-color: #9b59b6;
       color: white;
       cursor: pointer;
+      transition: background 0.3s;
     }
+
     button:hover {
       background-color: #8e44ad;
     }
-    .tabs {
-      display: flex;
-      margin-top: 20px;
-      gap: 10px;
-    }
-    .tab-button {
-      flex: 1;
-      background-color: #3b3355;
-      color: white;
-      padding: 10px;
-      border: none;
-      cursor: pointer;
-      border-radius: 8px;
-    }
-    .tab-button.active {
-      background-color: #9b59b6;
-    }
-    .tab-content {
-      display: none;
-      margin-top: 20px;
-    }
-    .tab-content.active {
-      display: block;
-    }
+
     .notice {
       background-color: #8e44ad;
-      color: #fff;
+      color: white;
       padding: 15px;
-      border-radius: 10px;
+      border-radius: 8px;
       margin-bottom: 20px;
       text-align: center;
-      font-weight: bold;
-      animation: fadeIn 1s ease-in-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
+
+  <!-- شاشة البداية -->
+  <div id="splash-screen">
+    <h1>هذا الموقع مخصص لفالكون تاون<br>وتم تصميمه من خلال المبرمج كافح المكافح</h1>
+  </div>
+
   <header>
     <h1>سيرفر فالكون - Falcon RP</h1>
     <nav>
@@ -103,132 +169,111 @@
       <a onclick="showSection('identity')">الشخصية / الهوية</a>
     </nav>
   </header>
+
   <main>
-    <section class="section active" id="home">
-      <h2>أهلاً بك في سيرفر فالكون</h2>
-      <p>سيرفر رول بلاي احترافي يقدم تجربة واقعية وممتعة للاعبين العرب و الاونرات هم بابلو و عبد الله.</p>
+    <section id="home" class="section active">
+      <h2>مرحباً بك في فالكون</h2>
+      <p>سيرفر رول بلاي واقعي وممتع، الأونرات: بابلو وعبد الله.</p>
     </section>
 
-    <section class="section" id="rules">
+    <section id="rules" class="section">
       <h2>قوانين السيرفر</h2>
       <ul>
-        <li>ممنوع النية السيئة (RDM / VDM).</li>
-        <li>احترام اللاعبين والإداريين.</li>
-        <li>الالتزام بالشخصية وعدم الخروج عن الدور.</li>
-        <li>ممنوع الغش أو استخدام أي برامج خارجية.</li>
+        <li>احترام اللاعبين وعدم الخروج عن الدور.</li>
+        <li>ممنوع RDM / VDM أو استخدام برامج خارجية.</li>
         <li>الالتزام بقوانين السير والمرور.</li>
-        <li>العمل والكسب ضمن حدود الوظائف والقوانين.</li>
       </ul>
-      <p style="margin-top:20px; font-weight:bold; color:#e1bfff">|| لجميع الاعضاء ||</p>
     </section>
 
-    <section class="section" id="apps">
+    <section id="apps" class="section">
       <h2>التقديمات</h2>
-      <div class="notice">تنبيه: بعد إرسال الطلب، الرجاء التوجه للتكت في الديسكورد لمتابعة التقديم.</div>
+      <div class="notice">بعد إرسال الطلب، توجه للتكت في الديسكورد.</div>
       <div class="tabs">
-        <button class="tab-button active" onclick="showTab(this, 'tab-police')">الشرطة</button>
-        <button class="tab-button" onclick="showTab(this, 'tab-gang')">العصابة</button>
-        <button class="tab-button" onclick="showTab(this, 'tab-submit')">تقديم</button>
-        <button class="tab-button" onclick="showTab(this, 'tab-ems')">الصحة</button>
-        <button class="tab-button" onclick="showTab(this, 'tab-admin')">إداري ديسكورد</button>
-        <button class="tab-button" onclick="showTab(this, 'tab-map')">رقابة ماب</button>
+        <button class="tab-button active" onclick="showTab(this, 'police')">الشرطة</button>
+        <button class="tab-button" onclick="showTab(this, 'gang')">العصابة</button>
+        <button class="tab-button" onclick="showTab(this, 'ems')">الصحة</button>
+        <button class="tab-button" onclick="showTab(this, 'justice')">العدل</button>
+        <button class="tab-button" onclick="showTab(this, 'admin')">إداري</button>
+        <button class="tab-button" onclick="showTab(this, 'map')">رقابة</button>
       </div>
 
-      <div id="tab-police" class="tab-content active">
+      <div id="police" class="tab-content active">
         <form onsubmit="sendForm(event, 'الشرطة')">
-          <input type="text" placeholder="اسمك في الديسكورد" required>
+          <input type="text" placeholder="يوزرك في الديسكورد" required>
           <input type="text" placeholder="اسمك في اللعبة" required>
-          <textarea placeholder="لماذا تريد الانضمام مع خبراتك العسكريه؟" required></textarea>
+          <textarea placeholder="ليش تبغى تنضم؟ + خبرتك الأمنية" required></textarea>
           <button type="submit">إرسال</button>
         </form>
       </div>
 
-      <div id="tab-gang" class="tab-content">
+      <div id="gang" class="tab-content">
         <form onsubmit="sendForm(event, 'العصابات')">
-          <input type="text" placeholder="اسمك في الديسكورد" required>
+          <input type="text" placeholder="يوزرك في الديسكورد" required>
           <input type="text" placeholder="اسم العصابة" required>
-          <textarea placeholder="نبذة عن العصابة وخططها" required></textarea>
+          <textarea placeholder="وصف العصابة وخططها" required></textarea>
           <button type="submit">إرسال</button>
         </form>
       </div>
 
-      <div id="tab-submit" class="tab-content">
-        <form onsubmit="sendForm(event, 'العدل')">
-          <input type="text" placeholder="اسمك في الديسكورد" required>
-          <input type="text" placeholder="ما العصابة الذي تقدم لها" required>
-          <textarea placeholder="لماذا تريد الانضمام وما هي خبراتك؟" required></textarea>
-          <button type="submit">إرسال</button>
-        </form>
-      </div>
-
-      <div id="tab-ems" class="tab-content">
-        <form onsubmit="sendForm(event, 'الصحه')">
-          <input type="text" placeholder="اسمك في الديسكورد" required>
+      <div id="ems" class="tab-content">
+        <form onsubmit="sendForm(event, 'الصحة')">
+          <input type="text" placeholder="يوزرك في الديسكورد" required>
           <input type="text" placeholder="اسمك في اللعبة" required>
-          <textarea placeholder="لماذا تريد تنضم مع الخبرات لقطاع الصحة؟" required></textarea>
+          <textarea placeholder="ليش تبغى تنضم؟ + خبراتك الطبية" required></textarea>
           <button type="submit">إرسال</button>
         </form>
       </div>
 
-      <div id="tab-admin" class="tab-content">
+      <div id="justice" class="tab-content">
+        <form onsubmit="sendForm(event, 'العدل')">
+          <input type="text" placeholder="يوزرك في الديسكورد" required>
+          <input type="text" placeholder="خبراتك القانونية" required>
+          <textarea placeholder="ليش تبغى تنضم لقطاع العدل؟" required></textarea>
+          <button type="submit">إرسال</button>
+        </form>
+      </div>
+
+      <div id="admin" class="tab-content">
         <form onsubmit="sendForm(event, 'الإداري')">
-          <input type="text" placeholder="اسمك في الديسكورد" required>
-          <input type="text" placeholder="خبراتك في الديسكورد" required>
-          <textarea placeholder="لماذا تريد أن تكون إداري في سيرفرنا؟" required></textarea>
+          <input type="text" placeholder="يوزرك في الديسكورد" required>
+          <input type="text" placeholder="خبراتك في الإدارة" required>
+          <textarea placeholder="ليش تشوف نفسك إداري مناسب؟" required></textarea>
           <button type="submit">إرسال</button>
         </form>
       </div>
 
-      <div id="tab-map" class="tab-content">
+      <div id="map" class="tab-content">
         <form onsubmit="sendForm(event, 'الرقابي')">
-          <input type="text" placeholder="اسمك في الديسكورد" required>
-          <input type="text" placeholder="خبراتك بالماباو بروبلوكس" required>
-          <textarea placeholder="لماذا ترغب بأن تكون مراقب ماب؟" required></textarea>
+          <input type="text" placeholder="يوزرك في الديسكورد" required>
+          <input type="text" placeholder="خبرتك في الماب" required>
+          <textarea placeholder="ليش تبغى تكون مراقب ماب؟" required></textarea>
           <button type="submit">إرسال</button>
         </form>
       </div>
     </section>
 
-    <section class="section" id="identity">
+    <section id="identity" class="section">
       <h2>الشخصية / الهوية</h2>
-      <div class="notice">تنبيه: بعد إرسال الطلب، الرجاء التوجه للتكت في الديسكورد لمتابعة حالته.</div>
-      <div class="tabs">
-        <button class="tab-button active" onclick="showTab(this, 'tab-char')">إنشاء شخصية</button>
-        <button class="tab-button" onclick="showTab(this, 'tab-id')">إنشاء هوية</button>
-      </div>
-
-      <div id="tab-char" class="tab-content active">
-        <form onsubmit="sendForm(event, 'الشخصيه')">
-          <input type="text" placeholder="اسمك في الديسكورد" required>
-          <input type="text" placeholder="اسم الشخصية" required>
-          <input type="text" placeholder="جنسية الشخصية" required>      
-          <textarea placeholder="نبذة عن الشخصية وخلفيتها" required></textarea>
-          <button type="submit">إرسال</button>
-        </form>
-      </div>
-
-      <div id="tab-id" class="tab-content">
-        <form onsubmit="sendForm(event, 'الهويه')">
-          <input type="text" placeholder="اسمك في الديسكورد" required>
-          <input type="text" placeholder="اسمك الكامل" required>
-          <input type="number" placeholder="العمر" required>
-          <input type="text" placeholder="الجنسية" required>
-          <button type="submit">إرسال</button>
-        </form>
-      </div>
+      <div class="notice">بعد إرسال الطلب، توجه للتكت في الديسكورد.</div>
+      <form onsubmit="sendForm(event, 'الشخصية')">
+        <input type="text" placeholder="يوزرك في الديسكورد" required>
+        <input type="text" placeholder="اسم الشخصية" required>
+        <input type="text" placeholder="جنسيتها" required>
+        <textarea placeholder="وصف الشخصية وخلفيتها" required></textarea>
+        <button type="submit">إرسال</button>
+      </form>
     </section>
   </main>
 
   <script>
     const webhooks = {
-      "الشرطة": "https://discord.com/api/webhooks/1369987759569240094/hR1SjVdwy4wFrTuahV9LGMNvRXm5c58eteMUHrKScutICt0wexSFdd2ZtciD3osAr2oc",
-      "الصحه": "https://discord.com/api/webhooks/1369988245458518067/kOUmzKc1GAEN5UrkZ-6wgo98S-mlAK7jt8U5XaCyDZsHnwiF-1dLWi12FdyUYnb1XmY-",
-      "العدل": "https://discord.com/api/webhooks/1369988518075699272/k6shIYqvK3KHTBwsdSdr3jVm08g0QIrwsif5wTqtFB25xF2xH4CWqQyTVLdOKjTYJFjm",
-      "العصابات": "https://discord.com/api/webhooks/1369988778080469034/WGhhl_D683EUpHfO9tNBV8iieKeJqZDsdBF9a7Jcqeq1mMcbWgjldctlqMig7C9hix2U",
-      "الهويه": "https://discord.com/api/webhooks/1370027618723827803/vnr9QyxYCj7sg1TKhgDSRvbs1usx-Nfa-zTNFkAl7ngT7KHmebQcGMrTJ5-I-VWutytu",
-      "الشخصيه": "https://discord.com/api/webhooks/1370027873733316673/6hjKAHNgF0P8QRCLhkRAdqww6ragBsKT6kn_8s8_YQ6XYMhOV6nkkBEkCC3tMaKjPMVB",
-      "الإداري": "https://discord.com/api/webhooks/1370072986958299217/IUeRnvk7yli9xtN7GJ_Q_DG8e0v7Mu-iaicbR9gdVLQvsCUzHVaL776jKW3ED1PUBfe3",
-      "الرقابي": "https://discord.com/api/webhooks/1370073191871021066/CAQq4i6usWwRvijRtkh3MBdi4yEK4ZXn-7cE26owA2ISNFtihIUEnQKxqDb_vWIccucr"
+      "الشرطة": "https://discord.com/api/webhooks/1377024760243949638/dWzm9cJjF6Mwjv3sJ0lcwXKP-TUjQZdhSUBKCn78-Wy7Q3tWH6cCrAQJLPihqiIXC-MK",
+      "الصحة": "https://discord.com/api/webhooks/1377024829827580045/hjGq7Z3j_aarWNP3rwVr6iJhsSmGFPG3fF634SR5_QKTUj7rWUZ9B89dVCs1yvsvpju9",
+      "العصابات": "https://discord.com/api/webhooks/1377024911750725783/aC8pDfa05mZ7oHWhxuQMoHL8Ds2_unQpPArLc-O2zNzzoN2VuBu6wgluYh95qsTTPjKO",
+      "العدل": "https://discord.com/api/webhooks/1377025029195174032/Vc_FnZ2-OswpkKH03hblHwFFg8hr0A9O8mIiDkeDGw1qEzfxQy7c74ZAv7y8rJqCMngS",
+      "الإداري": "https://discord.com/api/webhooks/1377025108836876450/SpeKe5p0KjxwwNlHpVH84PgDfUMrSpZuhOtmNOSsbH191xWsS-51uxn187SXDHlf55cK",
+      "الرقابي": "https://discord.com/api/webhooks/1377025166659293306/WaunkCV_vgMk0s0X7MUnl29z--VwidJCyDinmR2-GeY8A-WSClLu8Hd37z6JZKWDnS4V",
+      "الشخصية": "https://discord.com/api/webhooks/1370027873733316673/6hjKAHNgF0P8QRCLhkRAdqww6ragBsKT6kn_8s8_YQ6XYMhOV6nkkBEkCC3tMaKjPMVB"
     };
 
     function showSection(id) {
@@ -237,17 +282,17 @@
     }
 
     function showTab(button, tabId) {
-      const container = button.closest('.section');
-      container.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      const parent = button.closest('.section');
+      parent.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
-      container.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-      container.querySelector('#' + tabId).classList.add('active');
+      parent.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      parent.querySelector(`#${tabId}`).classList.add('active');
     }
 
-    function sendForm(e, القسم) {
+    function sendForm(e, section) {
       e.preventDefault();
       const form = e.target;
-      const webhookURL = webhooks[القسم];
+      const webhookURL = webhooks[section];
       const inputs = form.querySelectorAll('input, textarea');
       const fields = [];
 
@@ -255,35 +300,24 @@
         fields.push({ name: input.placeholder, value: input.value });
       });
 
-      const embedFields = fields.map(f => ({
-        name: f.name,
-        value: f.value,
-        inline: false
-      }));
-
       const payload = {
         embeds: [{
-          title: `تقديم ${القسم}`,
+          title: `تقديم ${section}`,
           color: 0x9b59b6,
-          fields: embedFields,
-          footer: {
-            text: "يرجى التوجه إلى التكت في الديسكورد لمتابعة الطلب."
-          },
+          fields: fields.map(f => ({ name: f.name, value: f.value, inline: false })),
           timestamp: new Date().toISOString()
         }]
       };
 
       fetch(webhookURL, {
         method: "POST",
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       }).then(() => {
-        alert(" تنبيه من الادارة :- تم إرسال الطلب بنجاح. الرجاء التوجه للتكت في الديسكورد.");
+        alert("✅ تم إرسال الطلب بنجاح، توجه للتكت في الديسكورد.");
         form.reset();
       }).catch(() => {
-        alert("حدث خطأ، حاول مرة أخرى.");
+        alert("❌ حدث خطأ أثناء الإرسال.");
       });
     }
   </script>
